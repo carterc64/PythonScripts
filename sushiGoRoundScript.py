@@ -11,12 +11,12 @@ class cords():
     startMenu3 = (517, 417)
     startMenu4 = (260, 366)
 
-    f_shrimp = ()
-    f_rice = ()
-    f_nori = ()
-    f_roe = ()
-    f_salman = ()
-    f_unagi = ()
+    f_shrimp = (-36, 300)
+    f_rice = (20, 299)
+    f_nori = (-38, 356)
+    f_roe = (27, 355)
+    f_salman = (-36, 411)
+    f_unagi = (18, 409)
 
 
 def leftClick():
@@ -63,7 +63,7 @@ def startGame():
 
 
 def main():
-   startGame()
+   getCords()
 
 if __name__ == '__main__':
     main()
