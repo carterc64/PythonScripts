@@ -67,12 +67,6 @@ def leftClick():
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
     print ("Click")
 
-def leftClick(cords):
-    mousePos(cords)
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
-    time.sleep(.1)
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
-    print ("Click")
 
 def leftDown():
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
@@ -126,7 +120,7 @@ def clearTables():
     time.sleep(1)
 
 def foldMat():
-    mousePos(cords.f_rice[0] + 40, cords.f_rice[1])
+    mousePos((cords.f_rice[0] + 100, cords.f_rice[1]))
     leftClick()
 
 
@@ -135,8 +129,10 @@ def makeFood(food):
     for item in sushi.sushiList:
         if (item[1] == food):
             for item in item[0]:
-                leftClick(item)
+                mousePos(item)
+                leftClick()
                 time.sleep(.1)
+    
     foldMat()
     time.sleep(.5)
     print ("sushi created")
@@ -144,7 +140,8 @@ def makeFood(food):
 
 
 def main():
-   getCords()
+   startGame()
+   makeFood("caliroll")
 
 if __name__ == '__main__':
     main()
