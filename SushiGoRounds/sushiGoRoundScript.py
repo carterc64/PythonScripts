@@ -2,7 +2,7 @@ import win32api, win32con
 import time
 import os
 import PIL
-from PIL import ImageOps 
+from PIL import ImageOps, Image, ImageGrab
 from numpy import *
 
 
@@ -63,6 +63,16 @@ class sushi():
 
     sushiList = [onigiri, caliroll, gunkan]
 
+class order():
+
+    nori = ((33, 30, 11), cords.t_nori)
+    roe = ((127, 61, 0), cords.t_fishEgg)
+    salmon = ((127, 71, 47), cords.t_salmon)
+    shrimp = ((127, 102, 90), cords.t_nori)
+    unagi = ((127, 71, 47), cords.t_nori)
+    salmon = ((127, 71, 47), cords.t_nori)
+    #sake = ((RGB values im.getPixel()), cords.t_nori)
+    
 
 
 
@@ -161,6 +171,11 @@ def buyFood(food):
 	
     mousePos(cords.deliverN)
 
+def screenGrab():
+    box = (cords.xPad+1, cords.yPad+1, cords.xPad+811, cords.yPad+608)
+    im = ImageGrab.grab(box)
+    #im.save(os.getcwd() + '\\full_snap_' + str(int(time.time())) + '.png', 'PNG')
+    return im
 
 def main():
    startGame()
