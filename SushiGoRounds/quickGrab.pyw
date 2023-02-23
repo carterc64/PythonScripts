@@ -11,8 +11,8 @@ play area = xPad+1, yPad+1, 1175, 782
 """
 
 
-xPad = 364
-yPad = 174
+xPad = 316
+yPad = 139
 def screenGrab():
     box = (xPad+1, yPad+1, xPad+811, yPad+608)
     im = ImageGrab.grab(box)

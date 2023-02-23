@@ -1,49 +1,54 @@
 import win32api, win32con
 import time
 import os
+import PIL
+from PIL import ImageOps 
+from numpy import *
+
+
 
 
 class cords():
-    xPad = 364
-    yPad = 174
+    xPad = 316
+    yPad = 139
 
-    startMenu1 = (250, 168)
-    startMenu2 = (260, 366)
-    startMenu3 = (517, 417)
-    startMenu4 = (260, 366)
+    startMenu1 = (457, 294)
+    startMenu2 = (454, 586)
+    startMenu3 = (846, 656)
+    startMenu4 = (460, 547)
 
-    f_shrimp = (-36, 300)
-    f_rice = (20, 299)
-    f_nori = (-38, 356)
-    f_roe = (27, 355)
-    f_salman = (-36, 411)
-    f_unagi = (18, 409)
+    f_shrimp = (50, 486)
+    f_rice = (135, 488)
+    f_nori = (56, 568)
+    f_roe = (134, 570)
+    f_salman = (52, 648)
+    f_unagi = (131, 644)
 
-    plate1 = (20,175)
-    plate2 = (122, 172)
-    plate3 = (228, 174)
-    plate4 = (327, 175)
-    plate5 = (432, 176)
-    plate6 = (531, 176)
+    plate1 = (136, 304)
+    plate2 = (281, 304)
+    plate3 = (433, 301)
+    plate4 = (579, 304)
+    plate5 = (728, 306)
+    plate6 = (883, 298)
 
-    phone = (518, 329)
+    phone = (853, 520)
 
-    m_toppings = (479, 240)
-    m_rice = (477, 261)
-    m_sake = (481, 283)
+    m_toppings = (794, 396)
+    m_rice = (794, 423)
+    m_sake = (794, 461)
 
-    t_shrimp = (427, 190)
-    t_unagi = (510, 184)
-    t_nori = (426, 244)
-    t_fishEgg = (514, 242)
-    t_salmon = (428, 300)
+    t_shrimp = (725, 324)
+    t_unagi = (847, 323)
+    t_nori = (722, 399)
+    t_fishEgg = (841, 400)
+    t_salmon = (723, 485)
 
-    t_rice = (478, 245)
+    t_rice = (798, 414)
 
-    t_sake = (478, 237)
+    t_sake = (798, 414)
 
-    deliverN = (425, 256)
-    deliverE = (511, 262)
+    deliverN = (721, 427)
+    deliverE = (843, 427)
 
 
 class sushi():
@@ -83,24 +88,24 @@ def mousePos(cord):
 
 def getCords():
     x,y = win32api.GetCursorPos()
-    x = x - cords.xPad
-    y = y - cords.yPad
+    x = x-cords.xPad
+    y = y-cords.yPad
     print (x,y)
 
 def startGame():
-    mousePos((250, 168))
+    mousePos((cords.startMenu1))
     leftClick()
     time.sleep(.1)
 
-    mousePos((260, 366))
+    mousePos((cords.startMenu2))
     leftClick()
     time.sleep(.1)
 
-    mousePos((517, 417))
+    mousePos((cords.startMenu3))
     leftClick()
     time.sleep(.1)
 
-    mousePos((266, 366))
+    mousePos((cords.startMenu4))
     leftClick()
     time.sleep(.1)
 
@@ -139,9 +144,27 @@ def makeFood(food):
     time.sleep(1.5)
 
 
+def buyFood(food):
+
+    mousePos(cords.phone)
+    mousePos(cords.m_toppings)
+	
+	
+    mousePos(cords.t_shrimp)
+    mousePos(cords.t_nori)
+    mousePos(cords.t_fishEgg)
+    mousePos(cords.t_salmon)
+    mousePos(cords.t_unagi)
+    mousePos(cords.t_exit)
+    mousePos(cords.m_rice)
+    mousePos(cords.t_rice)
+	
+    mousePos(cords.deliverN)
+
+
 def main():
    startGame()
-   makeFood("caliroll")
+   #makeFood("caliroll")
 
 if __name__ == '__main__':
     main()
