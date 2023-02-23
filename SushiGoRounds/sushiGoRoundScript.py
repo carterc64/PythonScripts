@@ -6,6 +6,12 @@ from PIL import ImageOps, Image, ImageGrab
 from numpy import *
 
 
+foodOnHand = {'shrimp':5,
+              'rice':10,
+              'nori':10,
+              'roe':10,
+              'salmon':5,
+              'unagi':5}
 
 
 class cords():
@@ -50,12 +56,36 @@ class cords():
     deliverN = (721, 427)
     deliverE = (843, 427)
 
+foodOnHand = {'shrimp':5,
+              'rice':10,
+              'nori':10,
+              'roe':10,
+              'salmon':5,
+              'unagi':5}
+
+    
+class order():
+    nori = [(33, 30, 11), cords.t_nori, "nori", foodOnHand["nori"]]
+    roe = [(127, 61, 0), cords.t_fishEgg, "roe", foodOnHand["roe"]]
+    salmon = [(127, 71, 47), cords.t_salmon, "salmon", foodOnHand["salmon"]]
+    shrimp = [(127, 102, 90), cords.t_shrimp, "shrimp", foodOnHand["shrimp"]]
+    unagi = [(94, 49, 8), cords.t_unagi, "unagi", foodOnHand["unagi"]]
+    rice = [(127, 127, 127), cords.t_rice, "rice", foodOnHand["rice"]]
+    #sake = ((RGB values im.getPixel()), cords.t_nori)
+    orderList = [nori, roe, salmon, shrimp, unagi, rice]
 
 class sushi():
+    nori = [ cords.f_nori, "nori", foodOnHand["nori"]]
+    roe = [ cords.f_roe, "roe", foodOnHand["roe"]]
+    salmon = [ cords.f_salman, "salmon", foodOnHand["salmon"]]
+    shrimp = [cords.f_shrimp, "shrimp", foodOnHand["shrimp"]]
+    unagi = [cords.f_unagi, "unagi", foodOnHand["unagi"]]
+    rice = [ cords.f_rice, "rice", foodOnHand["rice"]]
+  
 
-    r_onigiri = [cords.f_rice, cords.f_rice, cords.f_nori]
-    r_caliroll = [cords.f_rice, cords.f_nori, cords.f_roe ]
-    r_gunkan = [cords.f_rice, cords.f_nori, cords.f_roe, cords.f_roe]
+    r_onigiri = [rice, rice, nori]
+    r_caliroll = [rice, nori, roe]
+    r_gunkan = [rice, nori, roe, roe]
 
     onigiri = (r_onigiri, "onigiri")
     caliroll = (r_caliroll, "caliroll")
@@ -63,15 +93,35 @@ class sushi():
 
     sushiList = [onigiri, caliroll, gunkan]
 
-class order():
 
-    nori = ((33, 30, 11), cords.t_nori)
-    roe = ((127, 61, 0), cords.t_fishEgg)
-    salmon = ((127, 71, 47), cords.t_salmon)
-    shrimp = ((127, 102, 90), cords.t_nori)
-    unagi = ((127, 71, 47), cords.t_nori)
-    salmon = ((127, 71, 47), cords.t_nori)
-    #sake = ((RGB values im.getPixel()), cords.t_nori)
+
+    
+
+def orderFood(food):
+
+    for item in sushi.orderList:
+        if item[2] == food:
+            mousePos(cords.phone)
+            time.sleep(.1)
+            leftClick()
+            mousePos(item[1])
+            leftClick()
+            s = screenGrab()
+            if s.getpixel(item[1]) != item[0]:
+                print ("rice avaiable")
+                time.sleep(.1)
+                leftClick()
+                mousePos(cords.deliverN)
+                time.sleep(.1)
+                leftClick()
+                time.sleep(2)
+                break
+            else: 
+                print ("rice not avaiable")
+                mousePos(cords.t_exit)
+                leftClick()
+                time.sleep(1)
+                buyFood(food)
     
 
 
@@ -143,8 +193,9 @@ def makeFood(food):
     
     for item in sushi.sushiList:
         if (item[1] == food):
-            for item in item[0]:
-                mousePos(item)
+            for item2 in item[0]:
+                item2[2] -= 1
+                mousePos(item2[0])
                 leftClick()
                 time.sleep(.1)
     
@@ -179,7 +230,9 @@ def screenGrab():
 
 def main():
    startGame()
-   #makeFood("caliroll")
+   makeFood("caliroll")
+   makeFood("gunkan")
+   makeFood("onigiri")
 
 if __name__ == '__main__':
     main()
