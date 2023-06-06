@@ -66,7 +66,7 @@ def main():
     timeSleep = 10
     while (i < 1000):
         crush(crushes, timeSleep)
-        time.sleep(2)
+        time.sleep(.8)
         leftClick()
         time.sleep(.1)
         
