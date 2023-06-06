@@ -37,9 +37,6 @@ def crush(crushes, timeSleep):
     leftClick()
     time.sleep(.1)
     mousePos(cords.crushButton)
-    time.sleep(.1)
-    leftClick()
-    time.sleep(.1)
     crushes += 1.35 * timeSleep
     
         
@@ -67,8 +64,12 @@ def main():
     i = 0
     crushes = 0
     timeSleep = 10
-    while (i < 25):
+    while (i < 1000):
         crush(crushes, timeSleep)
+        time.sleep(2)
+        leftClick()
+        time.sleep(.1)
+        
 
         time.sleep(timeSleep)
         i += 1
